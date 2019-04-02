@@ -230,7 +230,7 @@ class UserProfile extends Component {
       const id = (Number(localStorage.getItem('countIdUsers')) || 0) + 1;
       localStorage.setItem('countIdUsers', id)
       const user = [
-        id, username, email, fullname + lastname, address, city, country
+        id, username, email, fullname + ' ' + lastname, address, city, country
       ]
 
       this.createUser(user);
@@ -246,7 +246,6 @@ class UserProfile extends Component {
   createUser = (user) => {
 
     const users = this.getTasks();
-    console.log({ users, user })
     users.push(user);
     localStorage.setItem('user', JSON.stringify(users))
     alert('Usuário cadastrado com sucesso!')
