@@ -232,7 +232,7 @@ class UserProfile extends Component {
       const user = [
         id, username, email, fullname + ' ' + lastname, address, city, country
       ]
-
+     
       this.createUser(user);
       this.setState({
         username: '', email: '', fullname: '', lastname: '', address: '', addressNumber: '',

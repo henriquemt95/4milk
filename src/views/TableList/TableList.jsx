@@ -11,33 +11,29 @@ class TableList extends Component {
 
   }
   componentDidMount() {
-    this.setState({
-      thArray: ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"],
-      tdArray: JSON.parse(localStorage.getItem('user'), '[]')
-    })
 
-    if (!this.state.tdArray) {
-      this.setState({
-        tdArray: [[" ", " ", " ", " ", " ", " ", " "]]
-      })
+      thArray= ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+      tdArray=JSON.parse(localStorage.getItem('user'), '[]')
+
+
+    if(!tdArray){
+      tdArray = [[" ", " ", " ", " ", " ", " ", " "]]
     }
+
 
   }
   componentWillMount() {
-    this.setState({
-      thArray: ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"],
-      tdArray: JSON.parse(localStorage.getItem('user'), '[]')
-    })
-    if (!this.state.tdArray) {
-      this.setState({
-        tdArray: [[" ", " ", " ", " ", " ", " ", " "]]
-      })
+    thArray= ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+    tdArray=JSON.parse(localStorage.getItem('user'), '[]')
+
+    if(!tdArray){
+      tdArray = [[" ", " ", " ", " ", " ", " ", " "]]
     }
 
+ 
   }
 
   render() {
-    const { tdArray, thArray } = this.state;
     return (
       <div className="content">
         <Grid fluid>
