@@ -12,25 +12,25 @@ class TableList extends Component {
   }
   componentDidMount() {
 
-      thArray= ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
-      tdArray=JSON.parse(localStorage.getItem('user'), '[]')
+    thArray = ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+    tdArray = JSON.parse(localStorage.getItem('user'), '[]')
 
 
-    if(!tdArray){
+    if (!tdArray) {
       tdArray = [[" ", " ", " ", " ", " ", " ", " "]]
     }
 
 
   }
   componentWillMount() {
-    thArray= ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
-    tdArray=JSON.parse(localStorage.getItem('user'), '[]')
+    thArray = ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+    tdArray = JSON.parse(localStorage.getItem('user'), '[]')
 
-    if(!tdArray){
+    if (!tdArray) {
       tdArray = [[" ", " ", " ", " ", " ", " ", " "]]
     }
 
- 
+
   }
 
   render() {
