@@ -2,9 +2,26 @@ import React, { Component } from "react";
 import { Grid, Row, Col, Table } from "react-bootstrap";
 
 import Card from "components/Card/Card.jsx";
-import { thArray, tdArray } from "variables/Variables.jsx";
+let thArray = ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"],
+  tdArray = JSON.parse(localStorage.getItem('user'), '[]');
 
 class TableList extends Component {
+  componentDidMount() {
+    thArray = ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+    tdArray = JSON.parse(localStorage.getItem('user'), '[]');
+    if (!tdArray) {
+      tdArray = [[" ", " ", " ", " ", " ", " ", " "]];
+    }
+
+  }
+  componentWillMount() {
+    thArray = ["Id", "Usuario", "Email", "Nome", "Endereço", "Cidade", "País"];
+    tdArray = JSON.parse(localStorage.getItem('user'), '[]');
+    if (!tdArray) {
+      tdArray = [[" ", " ", " ", " ", " ", " ", " "]];
+    }
+
+  }
   render() {
     return (
       <div className="content">
@@ -26,15 +43,16 @@ class TableList extends Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {tdArray.map((prop, key) => {
-                        return (
-                          <tr key={key}>
-                            {prop.map((prop, key) => {
-                              return <td key={key}>{prop}</td>;
-                            })}
-                          </tr>
-                        );
-                      })}
+                      {
+                        tdArray.map((prop, key) => {
+                          return (
+                            <tr key={key}>
+                              {prop.map((prop, key) => {
+                                return <td key={key}>{prop}</td>;
+                              })}
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 }

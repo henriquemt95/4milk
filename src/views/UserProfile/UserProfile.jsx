@@ -9,8 +9,6 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-import { createUser } from '../../app/state';
-import { connect } from 'react-redux';
 
 import avatar from "assets/img/faces/face-3.jpg";
 import { debug } from "util";
@@ -159,7 +157,7 @@ class UserProfile extends Component {
                           value: country,
                           onChange: this.handleInputChange
                         },
-                        { 
+                        {
                           name: 'zipcode',
                           label: "cep",
                           type: "number",
@@ -171,7 +169,7 @@ class UserProfile extends Component {
                         }
                       ]}
                     />
-                    
+
                     <Button bsStyle="info" onClick={this.handleCreateUser} pullRight fill type="submit">
                       Criar usuário
                     </Button>
@@ -224,32 +222,43 @@ class UserProfile extends Component {
   handleCreateUser = () => {
     const { username, email, fullname, lastname, address, addressNumber, complement,
       city, country, zipcode } = this.state
-        
+
     if (username && email && fullname && lastname && address && addressNumber && complement &&
       city && country && zipcode) {
 
-       //Criando um id auto increment
+      //Criando um id auto increment
       const id = (Number(localStorage.getItem('countIdUsers')) || 0) + 1;
       localStorage.setItem('countIdUsers', id)
-      const user = {
-        id,  username, email, fullname, lastname, address, addressNumber, complement,
-        city, country, zipcode
-      }
-      this.props.createUser(user)
+      const user = [
+        id, username, email, fullname + lastname, address, city, country
+      ]
+
+      this.createUser(user);
       this.setState({
-        username: '', email: '', fullname: '', lastname: '', address: '', number: '',
+        username: '', email: '', fullname: '', lastname: '', address: '', addressNumber: '',
         complement: '', city: '', country: '', zipcode: ''
       });
-    }else {
+    } else {
       alert('Todos os campos devem ser preenchidos!');
     }
   }
 
+  createUser = (user) => {
+
+    const users = this.getTasks();
+    console.log({ users, user })
+    users.push(user);
+    localStorage.setItem('user', JSON.stringify(users))
+    alert('Usuário cadastrado com sucesso!')
+
+  }
+
+  getTasks = () => {
+    const users = localStorage.getItem('user');
+    return JSON.parse(users || '[]');
+  }
+
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  createUser: (user) => (dispatch(createUser({ user }))),
-})
 
-
-export default connect(null, mapDispatchToProps)(UserProfile);
+export default UserProfile;
